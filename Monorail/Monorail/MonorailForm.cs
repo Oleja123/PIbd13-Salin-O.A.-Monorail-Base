@@ -36,7 +36,9 @@ namespace Monorail
             _drawningMonorail = new DrawningMonorail();
             _drawningMonorail.Init(random.Next(100, 300), random.Next(1000, 3000),
                 Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)),
-                pictureBoxMonorail.Width, pictureBoxMonorail.Height, 4, Color.White, Color.Black);
+                pictureBoxMonorail.Width, pictureBoxMonorail.Height, 4,
+                Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)),
+                Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)));
             Draw();
         }
 

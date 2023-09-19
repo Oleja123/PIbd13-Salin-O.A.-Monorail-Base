@@ -95,8 +95,10 @@ namespace Monorail
                 return;
             Pen pen = new (Color.Black);
             Brush cartBrush = new SolidBrush(Color.Black);
+            Brush bodyBrush = new SolidBrush(EntityMonorail.BodyColor);
             Pen windowPen = new(Color.Blue);
             Brush wheelBrush = new SolidBrush(EntityMonorail.WheelColor);
+            Brush windowBrush = new SolidBrush(Color.White);
             Pen tirePen = new Pen(EntityMonorail.TireColor);
             int wheelSz = _monoRailHeight - _monoRailHeight * 7 / 10;
             if (_monoRailWidth - _monoRailWidth / 20 * 17 < wheelSz)
@@ -109,9 +111,23 @@ namespace Monorail
             new Point(_startPosX + _monoRailWidth / 10, _startPosY + _monoRailHeight / 10 * 7),
             new Point(_startPosX + _monoRailWidth / 20 * 19, _startPosY + _monoRailHeight / 10 * 7),
             new Point(_startPosX + _monoRailWidth / 20 * 19, _startPosY + _monoRailHeight / 5 * 2),
-            new Point(_startPosX + _monoRailWidth / 10 * 5, _startPosY + _monoRailHeight / 5 * 2) };
+            new Point(_startPosX + _monoRailWidth / 10 * 5, _startPosY + _monoRailHeight / 5 * 2),
+            new Point(_startPosX + _monoRailWidth / 10 * 4, _startPosY + _monoRailHeight / 5 * 2)};
 
-            DrawPolyline(pen, g, pointsArrLow);
+            g.FillPolygon(bodyBrush, pointsArrLow);
+            g.DrawPolygon(pen, pointsArrLow);
+
+
+
+
+            //крыша локомотива
+            Point[] pointsArrRoof = { new Point(_startPosX + _monoRailWidth / 10, _startPosY + _monoRailHeight / 5 * 2),
+            new Point(_startPosX + _monoRailWidth / 10 * 2, _startPosY + _monoRailHeight / 10),
+            new Point(_startPosX + _monoRailWidth /20 * 19, _startPosY + _monoRailHeight / 10),
+            new Point(_startPosX + _monoRailWidth /20 * 19, _startPosY + _monoRailHeight / 5 * 2), 
+            new Point(_startPosX + _monoRailWidth / 10, _startPosY + _monoRailHeight / 5 * 2)};
+            g.FillPolygon(bodyBrush, pointsArrRoof);
+            g.DrawPolygon(pen, pointsArrRoof);
 
             //дверь локомотива
             Point[] pointsArrDoor = { new Point(_startPosX + _monoRailWidth / 10 * 4, _startPosY + _monoRailHeight / 5 * 2),
@@ -120,13 +136,8 @@ namespace Monorail
             new Point(_startPosX + _monoRailWidth / 10 * 5, _startPosY + _monoRailHeight / 5 * 3),
             new Point(_startPosX + _monoRailWidth / 10 * 4, _startPosY + _monoRailHeight / 5 * 3) };
             g.DrawPolygon(pen, pointsArrDoor);
+            g.FillPolygon(wheelBrush, pointsArrDoor);
 
-            //крыша локомотива
-            Point[] pointsArrRoof = { new Point(_startPosX + _monoRailWidth / 10, _startPosY + _monoRailHeight / 5 * 2),
-            new Point(_startPosX + _monoRailWidth / 10 * 2, _startPosY + _monoRailHeight / 10),
-            new Point(_startPosX + _monoRailWidth /20 * 19, _startPosY + _monoRailHeight / 10),
-            new Point(_startPosX + _monoRailWidth /20 * 19, _startPosY + _monoRailHeight / 5 * 2)};
-            DrawPolyline(pen, g, pointsArrRoof);
 
             //передняя часть тележки
             Point[] pointsArrFrontCart = { new Point(_startPosX + _monoRailWidth / 10 * 4, _startPosY + _monoRailHeight / 10 * 7),
@@ -153,6 +164,7 @@ namespace Monorail
             leftRect.Width = _monoRailWidth / 120 * 8;
             leftRect.Height = _monoRailHeight/ 50 * 10;
             g.DrawRectangle(windowPen, leftRect);
+            g.FillRectangle(windowBrush, leftRect);
 
             //среднее окно
             Rectangle midRect = new();
@@ -161,6 +173,7 @@ namespace Monorail
             midRect.Width = _monoRailWidth / 120 * 8;
             midRect.Height = _monoRailHeight / 50 * 10;
             g.DrawRectangle(windowPen, midRect);
+            g.FillRectangle(windowBrush, midRect);
 
             //правое окно
             Rectangle rightRect = new();
@@ -169,9 +182,10 @@ namespace Monorail
             rightRect.Width = _monoRailWidth / 120 * 8;
             rightRect.Height = _monoRailHeight / 50 * 10;
             g.DrawRectangle(windowPen, rightRect);
+            g.FillRectangle(windowBrush, rightRect);
 
             //2 колеса
-            if(EntityMonorail.WheelsNumb >= 2)
+            if (EntityMonorail.WheelsNumb >= 2)
             {
                 g.FillEllipse(wheelBrush, _startPosX + _monoRailWidth / 10 , _startPosY + _monoRailHeight / 10 * 7, wheelSz, wheelSz);
                 g.DrawEllipse(tirePen, _startPosX + _monoRailWidth / 10, _startPosY + _monoRailHeight / 10 * 7, wheelSz, wheelSz);
