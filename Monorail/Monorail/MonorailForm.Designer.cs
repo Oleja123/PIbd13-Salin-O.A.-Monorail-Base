@@ -36,6 +36,9 @@ namespace Monorail
             buttonRight = new System.Windows.Forms.Button();
             buttonUp = new System.Windows.Forms.Button();
             buttonDown = new System.Windows.Forms.Button();
+            comboBoxStrategy = new System.Windows.Forms.ComboBox();
+            buttonStep = new System.Windows.Forms.Button();
+            buttonCreateAdvanced = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxMonorail).BeginInit();
             SuspendLayout();
             // 
@@ -52,9 +55,9 @@ namespace Monorail
             // buttonCreate
             // 
             buttonCreate.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            buttonCreate.Location = new System.Drawing.Point(0, 424);
+            buttonCreate.Location = new System.Drawing.Point(198, 401);
             buttonCreate.Name = "buttonCreate";
-            buttonCreate.Size = new System.Drawing.Size(94, 29);
+            buttonCreate.Size = new System.Drawing.Size(180, 40);
             buttonCreate.TabIndex = 1;
             buttonCreate.Text = "Создать";
             buttonCreate.UseVisualStyleBackColor = true;
@@ -108,11 +111,44 @@ namespace Monorail
             buttonDown.UseVisualStyleBackColor = true;
             buttonDown.Click += ButtonMoveClick;
             // 
+            // comboBoxStrategy
+            // 
+            comboBoxStrategy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBoxStrategy.FormattingEnabled = true;
+            comboBoxStrategy.Items.AddRange(new object[] { "Довести до центра", "Довести до края" });
+            comboBoxStrategy.Location = new System.Drawing.Point(719, 12);
+            comboBoxStrategy.Name = "comboBoxStrategy";
+            comboBoxStrategy.Size = new System.Drawing.Size(151, 28);
+            comboBoxStrategy.TabIndex = 6;
+            // 
+            // buttonStep
+            // 
+            buttonStep.Location = new System.Drawing.Point(768, 46);
+            buttonStep.Name = "buttonStep";
+            buttonStep.Size = new System.Drawing.Size(94, 29);
+            buttonStep.TabIndex = 7;
+            buttonStep.Text = "Шаг";
+            buttonStep.UseVisualStyleBackColor = true;
+            buttonStep.Click += buttonStep_Click;
+            // 
+            // buttonCreateAdvanced
+            // 
+            buttonCreateAdvanced.Location = new System.Drawing.Point(12, 401);
+            buttonCreateAdvanced.Name = "buttonCreateAdvanced";
+            buttonCreateAdvanced.Size = new System.Drawing.Size(180, 40);
+            buttonCreateAdvanced.TabIndex = 8;
+            buttonCreateAdvanced.Text = "Создать продвинутый";
+            buttonCreateAdvanced.UseVisualStyleBackColor = true;
+            buttonCreateAdvanced.Click += buttonCreateAdvanced_Click;
+            // 
             // MonorailForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(882, 453);
+            Controls.Add(buttonCreateAdvanced);
+            Controls.Add(buttonStep);
+            Controls.Add(comboBoxStrategy);
             Controls.Add(buttonDown);
             Controls.Add(buttonUp);
             Controls.Add(buttonRight);
@@ -134,6 +170,9 @@ namespace Monorail
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.Button buttonDown;
+        public System.Windows.Forms.ComboBox comboBoxStrategy;
+        private System.Windows.Forms.Button buttonStep;
+        private System.Windows.Forms.Button buttonCreateAdvanced;
     }
 }
 
